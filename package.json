@@ -22,6 +22,6 @@
         "node-inherit" : ">= 1.0.0",
         "cssp" : ">= 1.0.0"
     },
-    "engines" : [ "node ~0.4.0" ],
+    "engines" : { "node" : ">= 0.4.0" },
     "licenses" : [ { "type" : "AS IS" } ]
 }
