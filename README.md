@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/veged/borschik.png)](http://travis-ci.org/veged/borschik)
 # Borschik
 
 Borschik is a extendable builder for text-based file formats.
