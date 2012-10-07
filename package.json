@@ -22,7 +22,8 @@
     "q": "~0.8.2",
     "q-fs": "0.1",
     "cssp": "~1.0.5",
-    "coffee-script": "*"
+    "coffee-script": "*",
+    "less": "*"
   },
   "devDependencies": {
     "ometajs": "2.1.x"
