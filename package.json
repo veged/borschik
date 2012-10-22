@@ -25,7 +25,13 @@
     "coffee-script": "*"
   },
   "devDependencies": {
-    "ometajs": "~3.1.5"
+    "ometajs": "~3.1.5",
+    "mocha": "1.0.x",
+    "visionmedia-jscoverage": "*"
+  },
+  "scripts": {
+    "test": "make test",
+    "test-cover": "make test-cover"
   },
   "engines": [
     "node >= 0.6.0"
