@@ -53,3 +53,16 @@ describe('freeze', function() {
         FS.unlink(path);
     });
 });
+
+describe('isImageUrl', function() {
+
+    it('isImageUrl ok', function() {
+        ASSERT.ok(FREEZE.isImageUrl('xxx.jpg'));
+        ASSERT.ok(FREEZE.isImageUrl('xxx.jpeg'));
+        ASSERT.ok(FREEZE.isImageUrl('xxx.ico'));
+        ASSERT.ok(FREEZE.isImageUrl('xxx.png'));
+        ASSERT.ok(FREEZE.isImageUrl('xxx.gif'));
+        ASSERT.ok(FREEZE.isImageUrl('xxx.svg'));
+        ASSERT.ok(FREEZE.isImageUrl('xxx.swf'));
+    });
+});
