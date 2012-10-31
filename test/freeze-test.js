@@ -3,10 +3,15 @@ var FREEZE = require('../lib/freeze'),
     PATH = require('path'),
     ASSERT = require('assert'),
 
-    testImagePath = './test/test.png';
+    testImagePath = './test/test.png',
+    exec = require('child_process').exec;
 
 function loadTestImage(path) {
-    return FS.readFileSync(PATH.resolve(path || testImagePath));
+    return readFile(path || testImagePath);
+}
+
+function readFile(path) {
+    return FS.readFileSync(PATH.resolve(path));
 }
 
 describe('sha1Base64', function() {
@@ -65,4 +70,42 @@ describe('isImageUrl', function() {
         ASSERT.ok(FREEZE.isImageUrl('xxx.svg'));
         ASSERT.ok(FREEZE.isImageUrl('xxx.swf'));
     });
+});
+
+describe('freeze from .css (-t css)', function() {
+    var error,
+        result,
+        okCSS = readFile('./test/freeze_from_css/ok_css.css').toString();
+
+    before(function(done) {
+        exec('./bin/borschik -t css -i ./test/freeze_from_css/test.css', function(err, stdout, stderr) {
+            error = err;
+            result = stdout;
+            done();
+        });
+    });
+
+    it('freeze ok', function() {
+        ASSERT.equal(result, okCSS);
+    }) 
+
+});
+
+describe('freeze from .css (-t css-fast)', function() {
+    var error,
+        result,
+        okCSS = readFile('./test/freeze_from_css/ok_cssfast.css').toString();
+
+    before(function(done) {
+        exec('./bin/borschik -t css-fast -i ./test/freeze_from_css/test.css', function(err, stdout, stderr) {
+            error = err;
+            result = stdout;
+            done();
+        });
+    });
+
+    it('freeze ok', function() {
+        ASSERT.equal(result, okCSS);
+    }) 
+
 });
