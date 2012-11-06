@@ -4,8 +4,7 @@ var FREEZE = require('../lib/freeze'),
     ASSERT = require('assert'),
     BORSCHIK = require('../lib/borschik'),
 
-    testImagePath = './test/test.png',
-    exec = require('child_process').exec;
+    testImagePath = './test/test.png';
 
 function loadTestImage(path) {
     return readFile(path || testImagePath);
@@ -52,11 +51,15 @@ describe('loadConfig', function() {
 });
 
 describe('freeze', function() {
+    var path;
 
     it('freeze path ok', function() {
-        var path = FREEZE.freeze(FREEZE.realpathSync('./test/freeze_basic/test.png'));
+        path = FREEZE.freeze(FREEZE.realpathSync('./test/freeze_basic/test.png'));
         ASSERT.ok(/\/test\/test2\/wFPs-e1B3wMRud8TzGw7YHjS08I\.png$/g.test(path));
-        FS.unlink(path);
+    });
+
+    after(function() {
+        FS.unlinkSync(path);
     });
 });
 
@@ -86,6 +89,10 @@ describe('freeze from .css (-t css)', function() {
     it('freeze ok', function() {
         ASSERT.equal(readFile('./test/freeze_from_css/_test.css').toString(), okCSS);
     });
+
+    after(function() {
+        FS.unlinkSync('./test/freeze_from_css/_test.css');
+    });
 });
 
 describe('freeze from .css (-t css-fast)', function() {
@@ -100,5 +107,9 @@ describe('freeze from .css (-t css-fast)', function() {
 
     it('freeze ok', function() {
         ASSERT.equal(readFile('./test/freeze_from_css/_test.css').toString(), okCSS);
+    });
+
+    after(function() {
+        FS.unlinkSync('./test/freeze_from_css/_test.css');
     });
 });
