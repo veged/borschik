@@ -2,6 +2,7 @@ var FREEZE = require('../lib/freeze'),
     FS = require('fs'),
     PATH = require('path'),
     ASSERT = require('assert'),
+    BORSCHIK = require('../lib/borschik'),
 
     testImagePath = './test/test.png',
     exec = require('child_process').exec;
@@ -73,39 +74,31 @@ describe('isImageUrl', function() {
 });
 
 describe('freeze from .css (-t css)', function() {
-    var error,
-        result,
-        okCSS = readFile('./test/freeze_from_css/ok_css.css').toString();
+    var okCSS = readFile('./test/freeze_from_css/ok_css.css').toString();
 
     before(function(done) {
-        exec('./bin/borschik -t css -i ./test/freeze_from_css/test.css', function(err, stdout, stderr) {
-            error = err;
-            result = stdout;
-            done();
-        });
+        BORSCHIK.api({ tech: 'css',
+                       input: './test/freeze_from_css/test.css',
+                       output: './test/freeze_from_css/_test.css' })
+        .then(function() { done() });
     });
 
     it('freeze ok', function() {
-        ASSERT.equal(result, okCSS);
-    }) 
-
+        ASSERT.equal(readFile('./test/freeze_from_css/_test.css').toString(), okCSS);
+    });
 });
 
 describe('freeze from .css (-t css-fast)', function() {
-    var error,
-        result,
-        okCSS = readFile('./test/freeze_from_css/ok_cssfast.css').toString();
+    var okCSS = readFile('./test/freeze_from_css/ok_cssfast.css').toString();
 
     before(function(done) {
-        exec('./bin/borschik -t css-fast -i ./test/freeze_from_css/test.css', function(err, stdout, stderr) {
-            error = err;
-            result = stdout;
-            done();
-        });
+        BORSCHIK.api({ tech: 'css-fast',
+                       input: './test/freeze_from_css/test.css',
+                       output: './test/freeze_from_css/_test.css' })
+        .then(function() { done() });
     });
 
     it('freeze ok', function() {
-        ASSERT.equal(result, okCSS);
-    }) 
-
+        ASSERT.equal(readFile('./test/freeze_from_css/_test.css').toString(), okCSS);
+    });
 });
