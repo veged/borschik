@@ -77,39 +77,41 @@ describe('isImageUrl', function() {
 });
 
 describe('freeze from .css (-t css)', function() {
-    var okCSS = readFile('./test/freeze_from_css/ok_css.css').toString();
+    var okCSS = readFile('./test/freeze_from_css/ok_css.css').toString(),
+        outPath = './test/freeze_from_css/_test.css';
 
     before(function(done) {
         BORSCHIK.api({ tech: 'css',
                        input: './test/freeze_from_css/test.css',
-                       output: './test/freeze_from_css/_test.css' })
+                       output: outPath })
         .then(function() { done() });
     });
 
     it('freeze ok', function() {
-        ASSERT.equal(readFile('./test/freeze_from_css/_test.css').toString(), okCSS);
+        ASSERT.equal(readFile(outPath).toString(), okCSS);
     });
 
     after(function() {
-        FS.unlinkSync('./test/freeze_from_css/_test.css');
+        FS.unlinkSync(outPath);
     });
 });
 
 describe('freeze from .css (-t css-fast)', function() {
-    var okCSS = readFile('./test/freeze_from_css/ok_cssfast.css').toString();
+    var okCSS = readFile('./test/freeze_from_css/ok_cssfast.css').toString(),
+        outPath = './test/freeze_from_css/_test.css';
 
     before(function(done) {
         BORSCHIK.api({ tech: 'css-fast',
                        input: './test/freeze_from_css/test.css',
-                       output: './test/freeze_from_css/_test.css' })
+                       output: outPath })
         .then(function() { done() });
     });
 
     it('freeze ok', function() {
-        ASSERT.equal(readFile('./test/freeze_from_css/_test.css').toString(), okCSS);
+        ASSERT.equal(readFile(outPath).toString(), okCSS);
     });
 
     after(function() {
-        FS.unlinkSync('./test/freeze_from_css/_test.css');
+        FS.unlinkSync(outPath);
     });
 });
