@@ -82,8 +82,7 @@ function testFreeze(tech, inPath, outPath, okPath) {
     okPath = PATH.resolve(__dirname, okPath);
 
     before(function(done) {
-            BORSCHIK.api({ tech: tech, input: inPath, output: outPath
-        }).then(function() { done() });
+            BORSCHIK.api({ tech: tech, input: inPath, output: outPath }).then(function() { done() });
     });
 
     it('freeze ' + tech + ' ok', function() {
