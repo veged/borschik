@@ -99,13 +99,25 @@ describe('freeze from .css (-t css)', function() {
                'freeze_from_css/test.css',
                'freeze_from_css/_test.css',
                'freeze_from_css/ok_css.css');
-
 });
 
-describe('freeze from .css (-t css)', function() {
+describe('freeze from .css (-t css-fast)', function() {
     testFreeze('css-fast',
                'freeze_from_css/test.css',
                'freeze_from_css/_test.css',
                'freeze_from_css/ok_cssfast.css');
+});
 
+describe('freeze excepts from .css (-t css)', function() {
+    testFreeze('css',
+               'freeze_excepts/test.css',
+               'freeze_excepts/_test.css',
+               'freeze_excepts/ok_css.css');
+});
+
+describe('freeze excepts from .css (-t css-fast)', function() {
+    testFreeze('css-fast',
+               'freeze_excepts/test.css',
+               'freeze_excepts/_test.css',
+               'freeze_excepts/ok_cssfast.css');
 });
