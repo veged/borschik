@@ -76,13 +76,13 @@ describe('isImageUrl', function() {
     });
 });
 
-function testFreeze(tech, inPath, outPath, okPath) {
-    inPath = PATH.resolve(__dirname, inPath);
-    outPath = PATH.resolve(__dirname, outPath);
-    okPath = PATH.resolve(__dirname, okPath);
+function testFreeze(tech, dir, inPath, outPath, okPath) {
+    inPath = PATH.resolve(__dirname, dir + '/' + inPath);
+    outPath = PATH.resolve(__dirname, dir + '/' + outPath);
+    okPath = PATH.resolve(__dirname, dir + '/' + okPath);
 
     before(function(done) {
-            BORSCHIK.api({ tech: tech, input: inPath, output: outPath }).then(function() { done() });
+        BORSCHIK.api({ tech: tech, input: inPath, output: outPath }).then(function() { done() });
     });
 
     it('freeze ' + tech + ' ok', function() {
@@ -91,33 +91,40 @@ function testFreeze(tech, inPath, outPath, okPath) {
 
     after(function() {
         FS.unlinkSync(outPath);
+        var imgPath = PATH.resolve(__dirname, dir + '/test/test2/wFPs-e1B3wMRud8TzGw7YHjS08I.png');
+        if (FS.existsSync(imgPath)) FS.unlinkSync(imgPath);
     });
 }
 
 describe('freeze from .css (-t css)', function() {
-    testFreeze('css',
-               'freeze_from_css/test.css',
-               'freeze_from_css/_test.css',
-               'freeze_from_css/ok_css.css');
+    testFreeze('css', 'freeze_from_css', 'test.css', '_test.css', 'ok_css.css');
 });
 
 describe('freeze from .css (-t css-fast)', function() {
-    testFreeze('css-fast',
-               'freeze_from_css/test.css',
-               'freeze_from_css/_test.css',
-               'freeze_from_css/ok_css.css');
+    testFreeze('css-fast', 'freeze_from_css', 'test.css', '_test.css', 'ok_css.css');
 });
 
 describe('freeze excepts from .css (-t css)', function() {
-    testFreeze('css',
-               'freeze_excepts/test.css',
-               'freeze_excepts/_test.css',
-               'freeze_excepts/ok_css.css');
+    testFreeze('css', 'freeze_excepts', 'test.css', '_test.css', 'ok_css.css');
 });
 
 describe('freeze excepts from .css (-t css-fast)', function() {
-    testFreeze('css-fast',
-               'freeze_excepts/test.css',
-               'freeze_excepts/_test.css',
-               'freeze_excepts/ok_css.css');
+    testFreeze('css-fast', 'freeze_excepts', 'test.css', '_test.css', 'ok_css.css');
+});
+
+describe('followSymlinks', function() {
+    var linkPath = PATH.join(__dirname, 'freeze_follow_symlinks/link.png'),
+        path;
+
+    it('correct link', function() {
+        FS.symlinkSync(PATH.resolve(__dirname, 'freeze_follow_symlinks/test.png'), linkPath);
+        path = FREEZE.freeze(FREEZE.realpathSync('./test/freeze_follow_symlinks/link.png'));
+        ASSERT.ok(/\/test\/test2\/wFPs-e1B3wMRud8TzGw7YHjS08I\.png$/g.test(path));
+    });
+
+    after(function() {
+        FS.unlinkSync(linkPath);
+        FS.unlinkSync(path);
+    });
+
 });
