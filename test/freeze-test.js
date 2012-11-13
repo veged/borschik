@@ -50,6 +50,22 @@ describe('loadConfig', function() {
 
 });
 
+describe('loadConfig empty', function() {
+
+    it('path', function() {
+        ASSERT.equal(FREEZE.path(PATH.resolve(__dirname, 'empty_config')), undefined);
+    });
+
+    it('freezePath', function() {
+        ASSERT.equal(FREEZE.freezePath(PATH.resolve(__dirname, 'empty_config')), undefined);
+    });
+
+    it('freezeDir', function() {
+        ASSERT.equal(FREEZE.freezeDir(PATH.resolve(__dirname, 'empty_config/file.png')), undefined);
+    });
+
+});
+
 describe('freeze', function() {
     var path;
 
@@ -118,7 +134,7 @@ describe('followSymlinks', function() {
 
     it('correct link', function() {
         FS.symlinkSync(PATH.resolve(__dirname, 'freeze_follow_symlinks/test.png'), linkPath);
-        path = FREEZE.freeze(FREEZE.realpathSync('./test/freeze_follow_symlinks/link.png'));
+        path = FREEZE.freeze(FREEZE.realpathSync('test/freeze_follow_symlinks/link.png'));
         ASSERT.ok(/\/test\/test2\/wFPs-e1B3wMRud8TzGw7YHjS08I\.png$/g.test(path));
     });
 
