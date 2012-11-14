@@ -160,12 +160,12 @@ describe('realpathSync', function() {
 
     it('realpath simple #1', function() {
         ASSERT.equal(FREEZE.realpathSync('test/freeze_basic/test.xxx'),
-                     PATH.join(__dirname + '/freeze_basic/test.xxx'));
+                     PATH.join(__dirname, '/freeze_basic/test.xxx'));
     });
 
     it('realpath ..', function() {
         ASSERT.equal(FREEZE.realpathSync('../test/../borschik/test/freeze_basic/test.xxx'),
-                     PATH.join(__dirname + '/freeze_basic/test.xxx'));
+                     PATH.join(__dirname, '/freeze_basic/test.xxx'));
     });
 
 });
