@@ -28,8 +28,7 @@
     "mocha-as-promised": "*",
     "mocha-istanbul": "*",
     "ometajs": "~3.1.5",
-    "mocha": "~1.6.0",
-    "visionmedia-jscoverage": "*"
+    "mocha": "~1.6.0"
   },
   "scripts": {
     "test": "make test",
