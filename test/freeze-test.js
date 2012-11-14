@@ -109,7 +109,7 @@ function testFreeze(tech, dir, inPath, outPath, okPath) {
 
     after(function() {
         FS.unlinkSync(outPath);
-        var rmPath = PATH.resolve(PATH.join(__dirname, dir, 'test/test2/wFPs-e1B3wMRud8TzGw7YHjS08I.png'));
+        var rmPath = PATH.resolve(__dirname, dir, 'test/test2/wFPs-e1B3wMRud8TzGw7YHjS08I.png');
         if (FS.existsSync(rmPath)) FS.unlinkSync(rmPath);
         if (FS.existsSync(rmPath = FREEZE.realpathSync(PATH.join('test', dir, 'test/test2')))) {
             FS.rmdirSync(rmPath);
