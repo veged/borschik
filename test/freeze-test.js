@@ -70,12 +70,14 @@ describe('freeze', function() {
     var path;
 
     it('freeze path ok', function() {
-        path = FREEZE.freeze(FREEZE.realpathSync('./test/freeze_basic/test.png'));
+        path = FREEZE.freeze(FREEZE.realpathSync('test/freeze_basic/test.png'));
         ASSERT.ok(/\/test\/test2\/wFPs-e1B3wMRud8TzGw7YHjS08I\.png$/g.test(path));
     });
 
     after(function() {
         FS.unlinkSync(path);
+        FS.rmdirSync(FREEZE.realpathSync('test/freeze_basic/test/test2'));
+        FS.rmdirSync(FREEZE.realpathSync('test/freeze_basic/test'));
     });
 });
 
@@ -107,8 +109,12 @@ function testFreeze(tech, dir, inPath, outPath, okPath) {
 
     after(function() {
         FS.unlinkSync(outPath);
-        var imgPath = PATH.resolve(__dirname, dir + '/test/test2/wFPs-e1B3wMRud8TzGw7YHjS08I.png');
-        if (FS.existsSync(imgPath)) FS.unlinkSync(imgPath);
+        var rmPath = PATH.resolve(__dirname, dir + '/test/test2/wFPs-e1B3wMRud8TzGw7YHjS08I.png');
+        if (FS.existsSync(rmPath)) FS.unlinkSync(rmPath);
+        if (FS.existsSync(rmPath = FREEZE.realpathSync('test/' + dir + '/test/test2'))) {
+            FS.rmdirSync(rmPath);
+            FS.rmdirSync(FREEZE.realpathSync('test/' + dir + '/test'));
+        }
     });
 }
 
