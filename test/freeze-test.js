@@ -158,7 +158,7 @@ describe('realpathSync', function() {
     });
 
     it('realpath ..', function() {
-        ASSERT.equal(FREEZE.realpathSync('test/../test/freeze_basic/test.xxx'),
+        ASSERT.equal(FREEZE.realpathSync('../test/../borschik/test/freeze_basic/test.xxx'),
                      __dirname + '/freeze_basic/test.xxx');
     });
 
