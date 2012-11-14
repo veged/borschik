@@ -95,9 +95,9 @@ describe('isImageUrl', function() {
 });
 
 function testFreeze(tech, dir, inPath, outPath, okPath) {
-    inPath = PATH.resolve(__dirname, dir + '/' + inPath);
-    outPath = PATH.resolve(__dirname, dir + '/' + outPath);
-    okPath = PATH.resolve(__dirname, dir + '/' + okPath);
+    inPath = PATH.resolve(PATH.join(__dirname, dir, inPath));
+    outPath = PATH.resolve(PATH.join(__dirname, dir, outPath));
+    okPath = PATH.resolve(PATH.join(__dirname, dir, okPath));
 
     before(function(done) {
         BORSCHIK.api({ tech: tech, input: inPath, output: outPath }).then(function() { done() });
@@ -109,11 +109,11 @@ function testFreeze(tech, dir, inPath, outPath, okPath) {
 
     after(function() {
         FS.unlinkSync(outPath);
-        var rmPath = PATH.resolve(__dirname, dir + '/test/test2/wFPs-e1B3wMRud8TzGw7YHjS08I.png');
+        var rmPath = PATH.resolve(PATH.join(__dirname, dir, 'test/test2/wFPs-e1B3wMRud8TzGw7YHjS08I.png'));
         if (FS.existsSync(rmPath)) FS.unlinkSync(rmPath);
-        if (FS.existsSync(rmPath = FREEZE.realpathSync('test/' + dir + '/test/test2'))) {
+        if (FS.existsSync(rmPath = FREEZE.realpathSync(PATH.join('test', dir, 'test/test2')))) {
             FS.rmdirSync(rmPath);
-            FS.rmdirSync(FREEZE.realpathSync('test/' + dir + '/test'));
+            FS.rmdirSync(FREEZE.realpathSync(PATH.join('test', dir, 'test')));
         }
     });
 }
@@ -155,17 +155,17 @@ describe('realpathSync', function() {
 
     it('realpath simple #0', function() {
         ASSERT.equal(FREEZE.realpathSync('freeze_basic/test.xxx', __dirname),
-                     __dirname + '/freeze_basic/test.xxx');
+                     PATH.join(__dirname, '/freeze_basic/test.xxx'));
     });
 
     it('realpath simple #1', function() {
         ASSERT.equal(FREEZE.realpathSync('test/freeze_basic/test.xxx'),
-                     __dirname + '/freeze_basic/test.xxx');
+                     PATH.join(__dirname + '/freeze_basic/test.xxx'));
     });
 
     it('realpath ..', function() {
         ASSERT.equal(FREEZE.realpathSync('../test/../borschik/test/freeze_basic/test.xxx'),
-                     __dirname + '/freeze_basic/test.xxx');
+                     PATH.join(__dirname + '/freeze_basic/test.xxx'));
     });
 
 });
