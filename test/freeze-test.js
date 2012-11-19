@@ -169,3 +169,46 @@ describe('realpathSync', function() {
     });
 
 });
+
+describe('freeze options: yes', function() {
+    var inPath = PATH.resolve(PATH.join(__dirname, 'freeze_basic', 'a.css')),
+        outPath = PATH.resolve(PATH.join(__dirname, 'freeze_basic', 'o.css')),
+        path = PATH.resolve(PATH.join(__dirname, 'freeze_basic', 'test', 'test2', 'wFPs-e1B3wMRud8TzGw7YHjS08I.png'));
+
+    before(function() {
+        return BORSCHIK.api({ tech: 'css', input: inPath, output: outPath, freeze: 'yes' });
+    });
+
+    it('freeze yes', function() {
+        ASSERT.ok(FS.existsSync(outPath));
+        ASSERT.ok(FS.existsSync(path));
+    });
+
+    after(function() {
+        FS.unlinkSync(outPath);
+        FS.unlinkSync(path);
+        FS.rmdirSync(FREEZE.realpathSync('test/freeze_basic/test/test2'));
+        FS.rmdirSync(FREEZE.realpathSync('test/freeze_basic/test'));
+    });
+
+});
+
+describe('freeze options: no', function() {
+    var inPath = PATH.resolve(PATH.join(__dirname, 'freeze_basic', 'a.css')),
+        outPath = PATH.resolve(PATH.join(__dirname, 'freeze_basic', 'o.css')),
+        path = PATH.resolve(PATH.join(__dirname, 'freeze_basic', 'test', 'test2', 'wFPs-e1B3wMRud8TzGw7YHjS08I.png'));
+
+    before(function() {
+        return BORSCHIK.api({ tech: 'css', input: inPath, output: outPath, freeze: 'no' });
+    });
+
+    it('freeze no', function() {
+        ASSERT.ok(FS.existsSync(outPath));
+        ASSERT.ok(!FS.existsSync(path));
+    });
+
+    after(function() {
+        FS.unlinkSync(outPath);
+    });
+
+});
