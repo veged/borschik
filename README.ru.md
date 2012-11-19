@@ -1,7 +1,7 @@
 # Borschik
 
-Borschik is a extendable builder for text-based file formats.
-It's main purpose is the assembly of static files for web projects (CSS, JS, etc.).
+Borschik — это расширяемый сборщик файлов текстовых форматов.
+Его основной задачей является сборка статических файлов веб-проектов (CSS, JS и т.д.).
 
 # Относительные ссылки на картинки
 
@@ -29,7 +29,7 @@ It's main purpose is the assembly of static files for web projects (CSS, JS, etc
 Значение опций:
 
 * `yes` — умолчательное, означает делать всё согласно конфигу только над теми картинками на которые есть ссылки в CSS
-* `no` — не трогать картинки независимо от содержимого конфига
+* `no` — не «замораживать» картинки независимо от содержимого конфига
 
 # Раскрытие символических ссылок  
 
@@ -43,7 +43,3 @@ It's main purpose is the assembly of static files for web projects (CSS, JS, etc
 ```
 
 Семантика такая: указываются те файлы/папки, при обработке относительных путей от которых нужно проследовать по симлинке.
-
-<!-- Yandex.Metrika counter -->
-<img src="//mc.yandex.ru/watch/12831025" style="position:absolute; left:-9999px;" alt="" />
-<!-- /Yandex.Metrika counter -->
