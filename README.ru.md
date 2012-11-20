@@ -68,7 +68,7 @@ CSS-файле заменять его на имя, основанное на х
 
     ```css
     a {
-        p: url("//a/b/test/test2/wFPs-e1B3wMRud8TzGw7YHjS08I.png");
+        p: url("/Users/pupkin/myproject/a/b/wFPs-e1B3wMRud8TzGw7YHjS08I.png");
     }
     ```
 
