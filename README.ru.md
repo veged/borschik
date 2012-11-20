@@ -65,11 +65,12 @@ CSS-файле заменять его на имя, основанное на х
 `wFPs-e1B3wMRud8TzGw7YHjS08I.png` (имя будет меняться в зависимости от
 содержимого картинки).
 * Путь к картинке в CSS изменится следующим образом:
-```css
-a {
-    p: url("//a/b/test/test2/wFPs-e1B3wMRud8TzGw7YHjS08I.png");
-}
-```
+
+    ```css
+    a {
+        p: url("//a/b/test/test2/wFPs-e1B3wMRud8TzGw7YHjS08I.png");
+    }
+    ```
 
 Значение опций:
 
