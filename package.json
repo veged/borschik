@@ -12,7 +12,6 @@
   "directories": {
     "lib": "./lib"
   },
-  "main": "./lib/borschik.js",
   "bin": {
     "borschik": "./bin/borschik"
   },
@@ -25,7 +24,15 @@
     "coffee-script": "*"
   },
   "devDependencies": {
-    "ometajs": "~3.1.5"
+    "istanbul": "~0.1.11",
+    "mocha-as-promised": "*",
+    "mocha-istanbul": "*",
+    "ometajs": "~3.1.5",
+    "mocha": "~1.6.0"
+  },
+  "scripts": {
+    "test": "make test",
+    "coverage": "make coverage"
   },
   "engines": [
     "node >= 0.6.0"
