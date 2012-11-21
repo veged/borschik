@@ -62,7 +62,7 @@ Borschik — это расширяемый сборщик файлов текс�
 
     ```css
     a {
-        p: url("/Users/pupkin/myproject/a/b/wFPs-e1B3wMRud8TzGw7YHjS08I.png");
+        p: url("a/b/wFPs-e1B3wMRud8TzGw7YHjS08I.png");
     }
     ```
 
