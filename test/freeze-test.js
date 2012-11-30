@@ -1,5 +1,5 @@
 var FREEZE = require('..').freeze,
-    FS = require('fs'),
+    FS = require('../lib/fs'),
     PATH = require('path'),
     ASSERT = require('assert'),
     BORSCHIK = require('..'),
