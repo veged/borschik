@@ -109,8 +109,8 @@ function testFreeze(tech, dir, inPath, outPath, okPath, freeze, minimize) {
     outPath = PATH.resolve(PATH.join(__dirname, dir, outPath));
     okPath = PATH.resolve(PATH.join(__dirname, dir, okPath));
 
-    before(function() {
-        return BORSCHIK.api({ tech: tech, input: inPath, output: outPath, freeze: freeze, minimize: minimize });
+    before(function(done) {
+        BORSCHIK.api({ tech: tech, input: inPath, output: outPath, freeze: freeze, minimize: minimize }).then(done);
     });
 
     it('freeze ' + tech + ' ok', function() {
@@ -185,8 +185,8 @@ describe('freeze options: yes', function() {
         outPath = PATH.resolve(PATH.join(__dirname, 'freeze_basic', 'o.css')),
         path = PATH.resolve(PATH.join(__dirname, 'freeze_basic', 'test', 'test2', 'wFPs-e1B3wMRud8TzGw7YHjS08I.png'));
 
-    before(function() {
-        return BORSCHIK.api({ tech: 'css', input: inPath, output: outPath, minimize: true });
+    before(function(done) {
+        BORSCHIK.api({ tech: 'css', input: inPath, output: outPath, minimize: true }).then(done);
     });
 
     it('freeze yes', function() {
@@ -208,8 +208,8 @@ describe('freeze options: no', function() {
         outPath = PATH.resolve(PATH.join(__dirname, 'freeze_basic', 'o.css')),
         path = PATH.resolve(PATH.join(__dirname, 'freeze_basic', 'test', 'test2', 'wFPs-e1B3wMRud8TzGw7YHjS08I.png'));
 
-    before(function() {
-        return BORSCHIK.api({ tech: 'css', input: inPath, output: outPath, freeze: false });
+    before(function(done) {
+        BORSCHIK.api({ tech: 'css', input: inPath, output: outPath, freeze: false }).then(done);
     });
 
     it('freeze no', function() {
@@ -236,8 +236,8 @@ function testJS(tech, dir, inPath, outPath, okPath) {
     outPath = PATH.resolve(PATH.join(__dirname, dir, outPath));
     okPath = PATH.resolve(PATH.join(__dirname, dir, okPath));
 
-    before(function() {
-        return BORSCHIK.api({ tech: tech, input: inPath, output: outPath, minimize: true });
+    before(function(done) {
+        BORSCHIK.api({ tech: tech, input: inPath, output: outPath, minimize: true }).then(done);
     });
 
     it('UglifyJS, tech ' + tech + ' ok', function() {
