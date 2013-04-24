@@ -1,3 +1,5 @@
+Attention! Main repository moved to [bem/borschik](http://bem.info/articles/borschik/).
+
 # Borschik
 [![Build Status](https://secure.travis-ci.org/veged/borschik.png?branch=master)](http://travis-ci.org/veged/borschik)
 
